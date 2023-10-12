@@ -14,7 +14,7 @@ public class ExtractIntegers {
         try (BufferedReader in = new BufferedReader(new FileReader(inPath))) {
             String line;
             while ((line = in.readLine()) != null) {
-                Pattern pattern = Pattern.compile("( \\d+ )");
+                Pattern pattern = Pattern.compile("(\\s|[\\[\\],\\.!?\\-=\\(\\)])(\\d+)(\\s|[\\[\\],\\.!?\\-=\\(\\)])");
                 Matcher matcher = pattern.matcher(line);
                 while (matcher.find()) {
                     System.out.println(matcher.group());
