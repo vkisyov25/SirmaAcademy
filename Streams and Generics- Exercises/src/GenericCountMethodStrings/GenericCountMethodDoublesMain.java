@@ -9,14 +9,14 @@ public class GenericCountMethodDoublesMain {
         Scanner scanner = new Scanner(System.in);
         int number = Integer.parseInt(scanner.nextLine());
         Box2<Double> stringBox2 = null;
-        List<Box2> box2List = new ArrayList<>();
+        List<Double> box2List = new ArrayList<>();
         for (int i = 0; i < number; i++) {
             Double text = Double.parseDouble(scanner.nextLine());
             stringBox2 = new Box2<>(text);
-            box2List.add(stringBox2);
+            box2List.add(Double.parseDouble(String.valueOf(stringBox2)));
         }
 
         Double text = Double.parseDouble(scanner.nextLine());
-        //System.out.println(stringBox2.count(box2List,text));
+        System.out.println(stringBox2.count(box2List,text));
     }
 }
