@@ -1,5 +1,6 @@
 package com.hrrs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -7,33 +8,26 @@ public class User {
     private String password;
     private List<String> bookingHistory;
 
-    public User(String username, String password, List<String> bookingHistory) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.bookingHistory = bookingHistory;
+        this.bookingHistory = new ArrayList<>();
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public boolean checkPassword(String password) {
+        return this.password.equals(password);
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void addBooking(String bookingDetails) {
+        bookingHistory.add(bookingDetails);
     }
 
     public List<String> getBookingHistory() {
         return bookingHistory;
     }
 
-    public void setBookingHistory(List<String> bookingHistory) {
-        this.bookingHistory = bookingHistory;
-    }
 }
