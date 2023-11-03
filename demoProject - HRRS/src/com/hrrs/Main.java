@@ -2,10 +2,11 @@ package com.hrrs;
 
 import com.hrrs.User.User;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         printMainMenu();
         int num = Integer.parseInt(scanner.nextLine());
@@ -25,7 +26,7 @@ public class Main {
             } else if (num == 6) {
 
             }
-
+            
             num = Integer.parseInt(scanner.nextLine());
         }
 
@@ -49,7 +50,7 @@ public class Main {
         String username = scanner.nextLine();
         System.out.println("password: ");
         String password = scanner.nextLine();
-        userManager.registerUser(username, password);
+        System.out.println(userManager.registerUser(username, password));
     }
 
 
