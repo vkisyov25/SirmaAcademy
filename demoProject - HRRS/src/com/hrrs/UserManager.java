@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserManager {
-    private List<User> users;
+    private static List<User> users;
 
     public UserManager() {
         users = new ArrayList<>();
@@ -18,12 +18,12 @@ public class UserManager {
         if(users.size()==0){
             users.add((newUser));
         }else {
-            //check - If there is s user with this name and this password don't save it.
-            for (User user : users) {
-                if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+            for (int i=0; i<users.size(); i++) {
+                if (users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)) {
                     return "You have a profile and just need to login to it";
                 }else {
                     users.add(newUser);
+                    break;
                 }
             }
 
@@ -40,7 +40,7 @@ public class UserManager {
         return null;
     }
 
-    public List<User> getUsers() {
+    public static List<User> getUsers() {
         return users;
     }
 }

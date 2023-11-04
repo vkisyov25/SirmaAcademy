@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomManagement {
-    private List<Room> rooms;
+    private static List<Room> rooms;
 
     public RoomManagement() {
         rooms = new ArrayList<>();
@@ -30,5 +30,9 @@ public class RoomManagement {
     public void removeRoom(Room room) {
         // Намиране на стаята в списъка и премахване от него.
         rooms.removeIf(r -> r.getRoomNum()==(room.getRoomNum()));
+    }
+
+    public static List<Room> getRooms() {
+        return rooms;
     }
 }

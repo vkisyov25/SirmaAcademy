@@ -1,11 +1,15 @@
 package com.hrrs.Room;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Room {
     private int roomNum;
     private TypeRoom typeRoom;
     private double pricePerNight;
     private double cancellationFee;
     private Status status;
+
 
     public Room(int roomNum, TypeRoom typeRoom, double pricePerNight, double cancellationFee, Status status) {
         this.roomNum = roomNum;
@@ -49,8 +53,7 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" +
-                "roomNum=" + roomNum +
+        return "roomNum=" + roomNum +
                 ", typeRoom=" + typeRoom +
                 ", pricePerNight=" + pricePerNight +
                 ", cancellationFee=" + cancellationFee +

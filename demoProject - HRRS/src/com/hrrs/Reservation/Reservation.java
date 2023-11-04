@@ -4,9 +4,12 @@ import com.hrrs.Room.Room;
 import com.hrrs.Room.Status;
 import com.hrrs.User.User;
 
+import java.util.Date;
+
 public class Reservation {
     private User user;
     private Room room;
+    //TODO: checkInDate and checkOutDate can make Data type, because there is a problem with the price calculation in ReservationManager
     private String checkInDate;
     private String checkOutDate;
 
@@ -22,28 +25,44 @@ public class Reservation {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Room getRoom() {
         return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public String getCheckInDate() {
         return checkInDate;
     }
 
-    public String getCheckOutDate() {
-        return checkOutDate;
-    }
-
     public void setCheckInDate(String checkInDate) {
         this.checkInDate = checkInDate;
+    }
+
+    public String getCheckOutDate() {
+        return checkOutDate;
     }
 
     public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
-    //TODO: Can you have a mistake
-    public void cancelReservation() {
-        Status status = Status.AVAILABLE;
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "user=" + user +
+                ", room=" + room +
+                ", checkInDate='" + checkInDate + '\'' +
+                ", checkOutDate='" + checkOutDate + '\'' +
+                '}';
     }
 }
+
+
+

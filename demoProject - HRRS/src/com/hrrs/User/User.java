@@ -1,18 +1,21 @@
 package com.hrrs.User;
 
+import com.hrrs.Reservation.Reservation;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private String username;
     private String password;
-    private List<String> bookingHistory;
+    private static List<Reservation> bookingHistory;
 
     //TODO: Validation for password (I can remove bookingHistory)
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.bookingHistory = new ArrayList<>();
+        bookingHistory = new ArrayList<>();
+
     }
 
     public String getUsername() {
@@ -27,12 +30,13 @@ public class User {
         return this.password.equals(password);
     }
 
-    public void addBooking(String bookingDetails) {
-        bookingHistory.add(bookingDetails);
+
+    public static List<Reservation> getBookingHistory() {
+        return bookingHistory;
     }
 
-    public List<String> getBookingHistory() {
-        return bookingHistory;
+    public void addBookingHistory(Reservation reservation) {
+        this.bookingHistory.add(reservation);
     }
 
     @Override
