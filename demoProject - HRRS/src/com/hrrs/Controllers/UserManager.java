@@ -1,28 +1,29 @@
-package com.hrrs;
+package com.hrrs.Controllers;
 
 import com.hrrs.User.Role;
 import com.hrrs.User.User;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserManager {
+public class UserManager implements Serializable {
     private static List<User> users;
 
     public UserManager() {
         users = new ArrayList<>();
     }
 
-    public String registerUser(String username, String password,Role roles) {
+    public String registerUser(String username, String password, Role roles) {
         User newUser = new User(username, password, roles);
-        if(users.size()==0){
+        if (users.size() == 0) {
             users.add((newUser));
-        }else {
-            for (int i=0; i<users.size(); i++) {
+        } else {
+            for (int i = 0; i < users.size(); i++) {
                 if (users.get(i).getUsername().equals(username) && users.get(i).getPassword().equals(password)) {
                     return "You have a profile and just need to login to it";
-                }else {
+                } else {
                     users.add(newUser);
                     break;
                 }

@@ -1,4 +1,4 @@
-package com.hrrs;
+package com.hrrs.Controllers;
 
 import com.hrrs.Room.Room;
 
@@ -19,7 +19,7 @@ public class RoomManagement {
     public void updateRoom(Room room, double newPricePerNight, double newCancellationFee) {
         // Намиране на стаята в списъка и актуализация на цената и таксата за отмяна.
         for (Room r : rooms) {
-            if (r.getRoomNum()==(room.getRoomNum())) {
+            if (r.getRoomNum() == (room.getRoomNum())) {
                 r.setPricePerNight(newPricePerNight);
                 r.setCancellationFee(newCancellationFee);
                 break;
@@ -29,7 +29,7 @@ public class RoomManagement {
 
     public void removeRoom(Room room) {
         // Намиране на стаята в списъка и премахване от него.
-        rooms.removeIf(r -> r.getRoomNum()==(room.getRoomNum()));
+        rooms.removeIf(r -> r.getRoomNum() == (room.getRoomNum()));
     }
 
     public static List<Room> getRooms() {

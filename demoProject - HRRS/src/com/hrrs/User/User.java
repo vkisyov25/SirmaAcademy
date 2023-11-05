@@ -2,17 +2,20 @@ package com.hrrs.User;
 
 import com.hrrs.Reservation.Reservation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
     private String username;
     private String password;
     private static List<Reservation> bookingHistory;
     private Role roles;
 
-    //TODO: Validation for password (I can remove bookingHistory)
-    public User(String username, String password,Role roles) {
+    //TODO: Validation for password.
+    public User(String username, String password, Role roles) {
+
+
         this.username = username;
         this.password = password;
         this.roles = roles;

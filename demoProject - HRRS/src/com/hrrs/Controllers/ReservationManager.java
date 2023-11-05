@@ -1,22 +1,18 @@
-package com.hrrs;
+package com.hrrs.Controllers;
 
 import com.hrrs.Reservation.Reservation;
 import com.hrrs.Room.Room;
 import com.hrrs.Room.Status;
 import com.hrrs.User.User;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
-import static com.hrrs.RoomManagement.*;
-import static com.hrrs.UserManager.getUsers;
+import static com.hrrs.Controllers.RoomManagement.*;
+import static com.hrrs.Controllers.UserManager.getUsers;
 
 public class ReservationManager {
     private static List<Reservation> reservations;
-
 
 
     public ReservationManager() {
@@ -62,20 +58,9 @@ public class ReservationManager {
     public void cancelReservation(Reservation reservation) {
         // Изчисление на такси за отмяна, ако е необходимо.
         // Отмяна на резервацията и актуализация на статуса на стаята.
-
-        /*for (int i = 0; i < getReservations().size() ; i++) {
-            if(getReservations().get(i).equals(reservation)){
-                System.out.printf("For cancel this reservation you have to pay %.2f\n",getRooms().get(i).getCancellationFee());
-                //problem
-                getRooms().get(i).setStatus(Status.valueOf("AVAILABLE"));
-                reservations.remove(i);
-                User.getBookingHistory().remove(i);
-            }
-        }*/
-        for (int i = 0; i < User.getBookingHistory().size() ; i++) {
-            if(User.getBookingHistory().get(i).equals(reservation)){
-                System.out.printf("For cancel this reservation you have to pay %.2f\n",getRooms().get(i).getCancellationFee());
-                //problem
+        for (int i = 0; i < User.getBookingHistory().size(); i++) {
+            if (User.getBookingHistory().get(i).equals(reservation)) {
+                System.out.printf("For cancel this reservation you have to pay %.2f\n", getRooms().get(i).getCancellationFee());
                 User.getBookingHistory().get(i).getRoom().setStatus(Status.valueOf("AVAILABLE"));
                 reservations.remove(i);
                 reservation = User.getBookingHistory().remove(i);
