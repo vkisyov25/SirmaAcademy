@@ -1,5 +1,6 @@
 package com.hrrs;
 
+import com.hrrs.User.Role;
 import com.hrrs.User.User;
 
 import java.io.IOException;
@@ -13,8 +14,8 @@ public class UserManager {
         users = new ArrayList<>();
     }
 
-    public String registerUser(String username, String password) {
-        User newUser = new User(username, password);
+    public String registerUser(String username, String password,Role roles) {
+        User newUser = new User(username, password, roles);
         if(users.size()==0){
             users.add((newUser));
         }else {

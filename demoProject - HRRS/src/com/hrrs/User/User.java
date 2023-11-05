@@ -9,11 +9,13 @@ public class User {
     private String username;
     private String password;
     private static List<Reservation> bookingHistory;
+    private Role roles;
 
     //TODO: Validation for password (I can remove bookingHistory)
-    public User(String username, String password) {
+    public User(String username, String password,Role roles) {
         this.username = username;
         this.password = password;
+        this.roles = roles;
         bookingHistory = new ArrayList<>();
 
     }
@@ -30,6 +32,13 @@ public class User {
         return this.password.equals(password);
     }
 
+    public Role getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Role roles) {
+        this.roles = roles;
+    }
 
     public static List<Reservation> getBookingHistory() {
         return bookingHistory;
