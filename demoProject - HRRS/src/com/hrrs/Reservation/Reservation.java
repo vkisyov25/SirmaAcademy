@@ -53,6 +53,7 @@ public class Reservation {
         this.checkOutDate = checkOutDate;
     }
 
+
     @Override
     public String toString() {
         return "Reservation{" +
