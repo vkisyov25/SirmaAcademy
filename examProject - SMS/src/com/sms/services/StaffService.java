@@ -20,7 +20,7 @@ public class StaffService implements Service {
         return employees;
     }
 
-    public List<Employee> readCSV() {
+    public List<Employee> readCSV() throws Exception {
         List<String> records = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("employee.csv"))) {
             String line;
@@ -41,18 +41,18 @@ public class StaffService implements Service {
             String department = records.get(i + 2);
             String role = records.get(i + 3);
             double salary = Double.parseDouble(records.get(i + 4));
-            /*boolean cr = StaffManagementApp.validateEmployee(String.valueOf(ID), name, department, role, String.valueOf(salary));
+            boolean cr = StaffManagementApp.validateEmployee(String.valueOf(ID), name, department, role, String.valueOf(salary));
             //Validation
-            if (cr == false) {
-                throw new RuntimeException();
-            }*/
+            if (!cr) {
+                throw new Exception("Invalid format");
+            }
             Employee employee = new Employee(ID, name, department, role, salary);
             employees1.add(employee);
         }
         return employees1;
     }
 
-    public StaffService() {
+    public StaffService() throws Exception {
         // Запълваме списъка със служители от файл ако няма данни във файла създаваме празен лист
         this.employees = readCSV();
         if (this.employees == null) {

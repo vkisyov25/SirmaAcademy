@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StaffManagementApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         // implement fileReader/fileWriter to handle saving into csv/json
         Service service = new StaffService(); //new StaffService(reader, writer);
@@ -78,40 +78,40 @@ public class StaffManagementApp {
         writeToFile();
     }
 
-    /*public static boolean validateEmployee(String ID, String name, String department, String role, String salary) {
+    public static boolean validateEmployee(String ID, String name, String department, String role, String salary) {
         Pattern patternId = Pattern.compile("[0-9]+");
         Matcher matcherId = patternId.matcher(ID);
         if (!matcherId.matches()) {
             return false;
         }
-        Pattern patternName = Pattern.compile("[a-zA-Z]+");
-        Matcher matcherName = patternId.matcher(name);
+        Pattern patternName = Pattern.compile("[a-zA-z]+");
+        Matcher matcherName = patternName.matcher(name);
         if (!matcherName.matches()) {
             return false;
         }
 
         Pattern patternDepartment = Pattern.compile("[a-zA-Z]+");
-        Matcher matcherDepartment = patternId.matcher(name);
+        Matcher matcherDepartment = patternDepartment.matcher(department);
         if (!matcherDepartment.matches()) {
             return false;
         }
-        Pattern patternRole = Pattern.compile("[a-zA-Z]+");
-        Matcher matcherRole = patternId.matcher(name);
+        Pattern patternRole = Pattern.compile("[a-zA-z ]+");
+        Matcher matcherRole = patternRole.matcher(role);
         if (!matcherRole.matches()) {
             return false;
         }
 
         Pattern patternSalary = Pattern.compile("\\d+.\\d+");
-        Matcher matcherSalary = patternId.matcher(name);
+        Matcher matcherSalary = patternSalary.matcher(salary);
         if (!matcherSalary.matches()) {
             return false;
         }
 
 
         return true;
-    }*/
+    }
 
-    private static void adding(Scanner scanner, Service service) {
+    private static void adding(Scanner scanner, Service service) throws Exception {
         int ID;
         if (StaffService.getEmployees().size() == 0) {
             ID = 0;
@@ -126,10 +126,10 @@ public class StaffManagementApp {
         String role = scanner.nextLine();
         System.out.println("salary:");
         double salary = Double.parseDouble(scanner.nextLine());
-        /*boolean cr = validateEmployee(String.valueOf(ID), name, department, role, String.valueOf(salary));
-        if (cr == false) {
-            throw new RuntimeException();
-        }*/
+        boolean cr = validateEmployee(String.valueOf(ID), name, department, role, String.valueOf(salary));
+        if (!cr) {
+            throw new Exception("Invalid format ");
+        }
         Employee employee = new Employee(ID, name, department, role, salary);
         service.addEmployee(employee);
         //write to CSV-file
