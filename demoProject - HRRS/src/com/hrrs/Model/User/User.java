@@ -1,6 +1,6 @@
-package com.hrrs.User;
+package com.hrrs.Model.User;
 
-import com.hrrs.Reservation.Reservation;
+import com.hrrs.Model.Reservation.Reservation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -53,10 +53,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", bookingHistory=" + bookingHistory +
-                '}';
+        //return username+","+password+","+bookingHistory +","+roles;
+        return username+","+password+","+roles;
     }
 }

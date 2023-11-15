@@ -1,6 +1,6 @@
-package com.hrrs.Controllers;
+package com.hrrs.Controller;
 
-import com.hrrs.Room.Room;
+import com.hrrs.Model.Room.Room;
 
 import java.util.ArrayList;
 import java.util.List;

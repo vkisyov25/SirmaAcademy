@@ -1,4 +1,4 @@
-package com.hrrs.User;
+package com.hrrs.Model.User;
 
 public enum Role {
     ADMINISTRATOR,

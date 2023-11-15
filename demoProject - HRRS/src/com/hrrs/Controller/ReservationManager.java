@@ -1,15 +1,15 @@
-package com.hrrs.Controllers;
+package com.hrrs.Controller;
 
-import com.hrrs.Reservation.Reservation;
-import com.hrrs.Room.Room;
-import com.hrrs.Room.Status;
-import com.hrrs.User.User;
+import com.hrrs.Model.Reservation.Reservation;
+import com.hrrs.Model.Room.Room;
+import com.hrrs.Model.Room.Status;
+import com.hrrs.Model.User.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.hrrs.Controllers.RoomManagement.*;
-import static com.hrrs.Controllers.UserManager.getUsers;
+import static com.hrrs.Controller.RoomManagement.*;
+import static com.hrrs.Controller.UserManager.getUsers;
 
 public class ReservationManager {
     private static List<Reservation> reservations;

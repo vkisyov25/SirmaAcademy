@@ -1,10 +1,7 @@
-package com.hrrs.Reservation;
+package com.hrrs.Model.Reservation;
 
-import com.hrrs.Room.Room;
-import com.hrrs.Room.Status;
-import com.hrrs.User.User;
-
-import java.util.Date;
+import com.hrrs.Model.Room.Room;
+import com.hrrs.Model.User.User;
 
 public class Reservation {
     private User user;
@@ -54,7 +51,7 @@ public class Reservation {
     }
 
 
-    @Override
+    /*@Override
     public String toString() {
         return "Reservation{" +
                 "user=" + user +
@@ -62,7 +59,7 @@ public class Reservation {
                 ", checkInDate='" + checkInDate + '\'' +
                 ", checkOutDate='" + checkOutDate + '\'' +
                 '}';
-    }
+    }*/
 }
 
 

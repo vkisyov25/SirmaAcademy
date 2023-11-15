@@ -1,27 +1,27 @@
 package com.hrrs;
 
-import com.hrrs.Controllers.ReservationManager;
-import com.hrrs.Controllers.RoomManagement;
-import com.hrrs.Controllers.UserManager;
-import com.hrrs.Reservation.Reservation;
-import com.hrrs.Room.Room;
-import com.hrrs.Room.TypeRoom;
-import com.hrrs.User.Role;
-import com.hrrs.User.User;
+import com.hrrs.Model.Reservation.Reservation;
+import com.hrrs.Model.Room.Room;
+import com.hrrs.Model.Room.TypeRoom;
+import com.hrrs.Model.User.Role;
+import com.hrrs.Model.User.User;
+import com.hrrs.Controller.ReservationManager;
+import com.hrrs.Controller.RoomManagement;
+import com.hrrs.Controller.UserManager;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static com.hrrs.Room.Status.AVAILABLE;
-import static com.hrrs.Room.Status.BOOKED;
-import static com.hrrs.Room.TypeRoom.DOUBLE;
-import static com.hrrs.Room.TypeRoom.SINGLE;
-import static com.hrrs.Controllers.RoomManagement.getRooms;
+import static com.hrrs.Model.Room.Status.AVAILABLE;
+import static com.hrrs.Model.Room.Status.BOOKED;
+import static com.hrrs.Model.Room.TypeRoom.DOUBLE;
+import static com.hrrs.Model.Room.TypeRoom.SINGLE;
+import static com.hrrs.Controller.RoomManagement.getRooms;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         printMainMenu();
         int num = Integer.parseInt(scanner.nextLine());
@@ -60,8 +60,8 @@ public class Main {
 
     private static int exit(int loginIndex) throws IOException {
         if (loginIndex != -1) {
-            //write every user in file output.txt
-            String pathIn = "D:\\JavaPrograms\\SirmaAcademy-exercises\\demoProject - HRRS\\src\\com\\hrrs\\output.txt";
+            //write every user in file
+            String pathIn = "";
             ObjectOutputStream ous = new ObjectOutputStream(new FileOutputStream(pathIn));
             ous.writeObject(UserManager.getUsers().get(loginIndex));
             System.out.println("You have signed out of your account");
@@ -178,7 +178,7 @@ public class Main {
         }
     }
 
-    private static int login(Scanner scanner, UserManager userManager) {
+    private static int login(Scanner scanner, UserManager userManager) throws Exception {
         System.out.println("username: ");
         String username = scanner.nextLine();
         System.out.println("password: ");
@@ -197,7 +197,7 @@ public class Main {
         return -1;
     }
 
-    private static void registration(Scanner scanner, UserManager userManager) {
+    private static void registration(Scanner scanner, UserManager userManager) throws Exception {
         System.out.println("username: ");
         String username = scanner.nextLine();
         System.out.println("password: ");
@@ -216,26 +216,11 @@ public class Main {
 
 
     public static void printMainMenu() {
-        System.out.print("\nWelcome to the Hotel Reservation Application\n" +
-                "--------------------------------------------\n" +
-                "1. Registration\n" +
-                "2. Login\n" +
-                "3. Reservation\n" +
-                "4. Reservation cancelled\n" +
-                "5. Admin menu - add room, remove room, update pricePerNight and cancellationFee\n" +
-                "6. Exit\n" +
-                "--------------------------------------------\n" +
-                "Please select a number for the menu option:\n");
+        System.out.print("\nWelcome to the Hotel Reservation Application\n" + "--------------------------------------------\n" + "1. Registration\n" + "2. Login\n" + "3. Reservation\n" + "4. Reservation cancelled\n" + "5. Admin menu - add room, remove room, update pricePerNight and cancellationFee\n" + "6. Exit\n" + "--------------------------------------------\n" + "Please select a number for the menu option:\n");
     }
 
     public static void printAdministratorMenu() {
-        System.out.print(
-                "--------------------------------------------\n" +
-                        "1. Add room\n" +
-                        "2. Remove room\n" +
-                        "3. Update price per night and cancellation fee\n" +
-                        "--------------------------------------------\n" +
-                        "Please select a number for the menu option:\n");
+        System.out.print("--------------------------------------------\n" + "1. Add room\n" + "2. Remove room\n" + "3. Update price per night and cancellation fee\n" + "--------------------------------------------\n" + "Please select a number for the menu option:\n");
 
     }
 }

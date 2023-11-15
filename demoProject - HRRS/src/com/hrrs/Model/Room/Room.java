@@ -1,7 +1,4 @@
-package com.hrrs.Room;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.hrrs.Model.Room;
 
 public class Room {
     private int roomNum;
