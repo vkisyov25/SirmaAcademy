@@ -35,7 +35,7 @@ public class Main {
         roomManagement.addRoom(new Room(212, DOUBLE, 70, 10, AVAILABLE));
 
 
-        int loginIndex = -1;
+        int  loginIndex = -1;
         while (num <= 6) {
 
             if (num == 1) {
@@ -168,6 +168,7 @@ public class Main {
                     reservationManager.makeReservation(user, room, checkInDate, checkOutDate);
                     //RoomManagement.getRooms().get(roomNum-1).setStatus(BOOKED);
                     reservationManager.getAvailableRooms().get(roomNum - 1).setStatus(BOOKED);
+                    ReservationManager.writeToFile();
                 }
 
             } else {

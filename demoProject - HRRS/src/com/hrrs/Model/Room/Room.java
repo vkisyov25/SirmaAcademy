@@ -50,12 +50,15 @@ public class Room {
     }
 
     @Override
-    public String toString() {
+    /*public String toString() {
         return "roomNum=" + roomNum +
                 ", typeRoom=" + typeRoom +
                 ", pricePerNight=" + pricePerNight +
                 ", cancellationFee=" + cancellationFee +
-                ", status=" + status +
-                '}';
+                ", status=" + status;
+    }*/
+    public String toString() {
+        return  + roomNum + "," + typeRoom + "," + pricePerNight + "," + cancellationFee + "," + status;
+
     }
 }

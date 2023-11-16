@@ -47,8 +47,8 @@ public class User implements Serializable {
         return bookingHistory;
     }
 
-    public void addBookingHistory(Reservation reservation) {
-        this.bookingHistory.add(reservation);
+    public static void addBookingHistory(Reservation reservation) {
+        bookingHistory.add(reservation);
     }
 
     @Override
