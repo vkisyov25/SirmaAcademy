@@ -1,19 +1,20 @@
 package com.hrrs.Controller;
 
 import com.hrrs.Model.Room.Room;
+import com.hrrs.Repository.RoomRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RoomManagement {
     private static List<Room> rooms;
 
-    public RoomManagement() {
-        rooms = new ArrayList<>();
+    public RoomManagement() throws Exception {
+        rooms = RoomRepository.readCSV();
     }
 
     public void addRoom(Room room) {
         rooms.add(room);
+        RoomRepository.writeToFile();
     }
 
     public void updateRoom(Room room, double newPricePerNight, double newCancellationFee) {
@@ -25,14 +26,18 @@ public class RoomManagement {
                 break;
             }
         }
+        RoomRepository.writeToFile();
     }
 
     public void removeRoom(Room room) {
         // Намиране на стаята в списъка и премахване от него.
         rooms.removeIf(r -> r.getRoomNum() == (room.getRoomNum()));
+        RoomRepository.writeToFile();
     }
 
     public static List<Room> getRooms() {
         return rooms;
     }
+
+
 }

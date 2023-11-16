@@ -29,10 +29,10 @@ public class Main {
         RoomManagement roomManagement = new RoomManagement();
         ReservationManager reservationManager = new ReservationManager();
 
-        //for testing
+        /*//for testing
         roomManagement.addRoom(new Room(210, SINGLE, 50, 10, AVAILABLE));
         roomManagement.addRoom(new Room(211, SINGLE, 60, 10, AVAILABLE));
-        roomManagement.addRoom(new Room(212, DOUBLE, 70, 10, AVAILABLE));
+        roomManagement.addRoom(new Room(212, DOUBLE, 70, 10, AVAILABLE));*/
 
 
         int  loginIndex = -1;
