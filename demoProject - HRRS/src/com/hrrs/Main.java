@@ -8,6 +8,7 @@ import com.hrrs.Model.User.User;
 import com.hrrs.Controller.ReservationManager;
 import com.hrrs.Controller.RoomManagement;
 import com.hrrs.Controller.UserManager;
+import com.hrrs.Repository.ReservationRepository;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -28,16 +29,8 @@ public class Main {
         UserManager userManager = new UserManager();
         RoomManagement roomManagement = new RoomManagement();
         ReservationManager reservationManager = new ReservationManager();
-
-        /*//for testing
-        roomManagement.addRoom(new Room(210, SINGLE, 50, 10, AVAILABLE));
-        roomManagement.addRoom(new Room(211, SINGLE, 60, 10, AVAILABLE));
-        roomManagement.addRoom(new Room(212, DOUBLE, 70, 10, AVAILABLE));*/
-
-
-        int  loginIndex = -1;
+        int loginIndex = -1;
         while (num <= 6) {
-
             if (num == 1) {
                 registration(scanner, userManager);
             } else if (num == 2) {
@@ -112,9 +105,12 @@ public class Main {
                     double newCancellationFee = Double.parseDouble(scanner.nextLine());
                     roomManagement.updateRoom(getRooms().get(roomNum - 1), newPricePerNight, newCancellationFee);
                 }
+
+            } else {
+                System.out.println("You aren't administrator");
             }
         } else {
-            System.out.println("You don't login in you account");
+            System.out.println("You don't login in your account");
         }
     }
 
@@ -138,10 +134,10 @@ public class Main {
                 System.out.println("You don't have some reservation");
             }
 
-
         } else {
             System.out.println("You don't login in you account");
         }
+
     }
 
 
@@ -149,6 +145,10 @@ public class Main {
         if (loginIndex != -1) {
             System.out.println("Do you make a reservation: Yes/No");
             String command = scanner.nextLine();
+            if (command.equals("No")) {
+                printMainMenu();
+                return;
+            }
             //TODO: Problem with dates, because we don't check if the room is available or booked on this dates
             System.out.println("Enter a checkInDate in format YYYY-MM-DD");
             String checkInDate = scanner.nextLine();
@@ -159,6 +159,7 @@ public class Main {
                 for (int i = 0; i < reservationManager.getAvailableRooms().size(); i++) {
                     System.out.printf("%d. %s\n", i + 1, reservationManager.getAvailableRooms().get(i));
                 }
+
                 //reservationManager.getAvailableRooms().stream().forEach(e-> System.out.println(e));
                 System.out.println("Which room want to reservation?");
                 int roomNum = Integer.parseInt(scanner.nextLine());
@@ -168,14 +169,15 @@ public class Main {
                     reservationManager.makeReservation(user, room, checkInDate, checkOutDate);
                     //RoomManagement.getRooms().get(roomNum-1).setStatus(BOOKED);
                     reservationManager.getAvailableRooms().get(roomNum - 1).setStatus(BOOKED);
-                    ReservationManager.writeToFile();
+                    ReservationRepository.writeToFile();
                 }
 
             } else {
                 System.out.println("At the moment there aren't available rooms");
             }
+
         } else {
-            System.out.println("You don't login in you account");
+            System.out.println("You don't login in your account");
         }
     }
 
@@ -190,11 +192,13 @@ public class Main {
         } else {
             System.out.println("Successful login");
         }
+
         for (int i = 0; i < UserManager.getUsers().size(); i++) {
             if (UserManager.getUsers().get(i).getUsername().equals(username) && UserManager.getUsers().get(i).getPassword().equals(password)) {
                 return i;
             }
         }
+
         return -1;
     }
 
