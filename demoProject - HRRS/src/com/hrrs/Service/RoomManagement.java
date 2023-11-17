@@ -25,7 +25,9 @@ public class RoomManagement {
                 r.setCancellationFee(newCancellationFee);
                 break;
             }
+
         }
+
         RoomRepository.writeToFile();
     }
 

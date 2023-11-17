@@ -6,7 +6,6 @@ import com.hrrs.Model.User.User;
 public class Reservation {
     private User user;
     private Room room;
-    //TODO: checkInDate and checkOutDate can make Data type, because there is a problem with the price calculation in ReservationManager
     private String checkInDate;
     private String checkOutDate;
 

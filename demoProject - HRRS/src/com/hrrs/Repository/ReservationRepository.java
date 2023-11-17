@@ -10,6 +10,8 @@ import com.hrrs.Model.User.User;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.hrrs.Service.ReservationManager.getReservations;
 
@@ -23,11 +25,13 @@ public class ReservationRepository {
                 for (int i = 0; i < values.length; i++) {
                     records.add(values[i]);
                 }
+
             }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         List<Reservation> userList = new ArrayList<>();
         for (int i = 0; i < records.size(); i += 10) {
             User user1 = null;
@@ -36,6 +40,7 @@ public class ReservationRepository {
             } else if (records.get(i + 2).equals("ORDINARY_USER")) {
                 user1 = new User(records.get(i), records.get(i + 1), Role.ORDINARY_USER);
             }
+
             Room room1 = null;
             if (records.get(i + 4).equals("SINGLE")) {
                 if (records.get(i + 7).equals("AVAILABLE")) {
@@ -45,6 +50,7 @@ public class ReservationRepository {
                     room1 = new Room(Integer.parseInt(records.get(i + 3)), TypeRoom.SINGLE, Double.parseDouble(records.get(i + 5)),
                             Double.parseDouble(records.get(i + 6)), Status.BOOKED);
                 }
+
             } else if (records.get(i + 4).equals("DOUBLE")) {
                 if (records.get(i + 7).equals("AVAILABLE")) {
                     room1 = new Room(Integer.parseInt(records.get(i + 3)), TypeRoom.DOUBLE, Double.parseDouble(records.get(i + 5)),
@@ -53,18 +59,22 @@ public class ReservationRepository {
                     room1 = new Room(Integer.parseInt(records.get(i + 3)), TypeRoom.DOUBLE, Double.parseDouble(records.get(i + 5)),
                             Double.parseDouble(records.get(i + 6)), Status.BOOKED);
                 }
+
             }
+
             String checkInDate1 = records.get(i + 8);
             String checkOutDate1 = records.get(i + 9);
-            /*boolean cr = StaffManagementApp.validateEmployee(String.valueOf(ID), name, department, role, String.valueOf(salary));
+            boolean cr = reservationValidation(checkInDate1, checkOutDate1);
             //Validation
             if (!cr) {
                 throw new Exception("Invalid format");
-            }*/
+            }
+
             Reservation reservation = new Reservation(user1, room1, checkInDate1, checkOutDate1);
             userList.add(reservation);
             return userList;
         }
+
         return userList;
     }
 
@@ -77,13 +87,38 @@ public class ReservationRepository {
                 Room password = getReservations().get(i).getRoom();
                 String inDate = getReservations().get(i).getCheckInDate();
                 String outDate = getReservations().get(i).getCheckOutDate();
+                boolean cr = reservationValidation(inDate, outDate);
+                //Validation
+                if (!cr) {
+                    throw new Exception("Invalid format");
+                }
+
                 myWriter.write(username + "," + password + "," + inDate + "," + outDate + "," + "\n");
             }
+
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+
+    }
+    public static boolean reservationValidation(String checkInDate, String checkOutDate) {
+        Pattern patternCheckInDate = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+        Matcher matcherCheckInDate = patternCheckInDate.matcher(checkInDate);
+        if (!matcherCheckInDate.matches()) {
+            return false;
+        }
+
+        Pattern patternCheckOutDate = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+        Matcher matcherCheckOutDate = patternCheckOutDate.matcher(checkOutDate);
+        if (!matcherCheckOutDate.matches()) {
+            return false;
+        }
+
+        return true;
     }
 }

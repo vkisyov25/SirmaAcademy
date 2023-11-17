@@ -31,19 +31,27 @@ public class ReservationManager {
                 Reservation reservation = new Reservation(user, room, checkOutDate, checkOutDate);
                 String[] arr = checkInDate.split("-");
                 String[] arr1 = checkOutDate.split("-");
-                double price = room.getPricePerNight() * (Integer.parseInt(arr1[2]) - Integer.parseInt(arr[2]));
+                double price = 0;
+                if (arr[1].equals(arr1[1])) {
+                    price = room.getPricePerNight() * (Integer.parseInt(arr1[2]) - Integer.parseInt(arr[2]));
+                } else {
+                    int diff = (Integer.parseInt(arr1[1]) - Integer.parseInt(arr[1])) - 1;
+                    price = room.getPricePerNight() * (30 * diff + (30 - Integer.parseInt(arr[2]) + Integer.parseInt(arr1[2])));
+                }
+
                 System.out.printf("The total cost is %.2f\n", price);
                 reservations.add(reservation);
-                //writeToFile();
                 user.addBookingHistory(reservation);
                 System.out.println("Successful reservation");
 
             } else {
                 System.out.println("Room is not available");
             }
+
         } else {
             System.out.println("The user don't have a registration");
         }
+
     }
 
     public List<Room> getAvailableRooms() {
@@ -52,7 +60,9 @@ public class ReservationManager {
             if (getRooms().get(i).getStatus() == Status.valueOf("AVAILABLE")) {
                 availableRoom.add(getRooms().get(i));
             }
+
         }
+
         return availableRoom;
     }
 
@@ -67,7 +77,9 @@ public class ReservationManager {
                 reservations.remove(i);
                 reservation = User.getBookingHistory().remove(i);
             }
+
         }
+
         ReservationRepository.writeToFile();
     }
 

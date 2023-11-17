@@ -31,6 +31,7 @@ public class Main {
         UserManager userManager = new UserManager();
         RoomManagement roomManagement = new RoomManagement();
         ReservationManager reservationManager = new ReservationManager();
+        //getRooms().forEach(e-> System.out.println(e));
         int loginIndex = -1;
         while (num <= 6) {
             if (num == 1) {
@@ -61,10 +62,8 @@ public class Main {
             ous.writeObject(UserManager.getUsers().get(loginIndex));
             System.out.println("You have signed out of your account");
             loginIndex = -1;
-
         } else {
             System.out.println("You are not logged in yet");
-
         }
 
         return loginIndex;
@@ -85,23 +84,18 @@ public class Main {
                         typeRoom = SINGLE;
                     } else if (typeRoomString.equals("DOUBLE")) {
                         typeRoom = DOUBLE;
-                    }else {
+                    } else {
                         throw new Exception("Invalid format");
                     }
+
                     System.out.println("pricePerNight = ");
                     double pricePerNight = Double.parseDouble(scanner.nextLine());
                     System.out.println("cancellationFee = ");
                     double cancellationFee = Double.parseDouble(scanner.nextLine());
-                    boolean cr = RoomRepository.roomValidation(String.valueOf(roomNum),String.valueOf(pricePerNight), String.valueOf(cancellationFee));
-                    //Validation
-                    if (!cr) {
-                        throw new Exception("Invalid format");
-                    }
-
                     Room room = new Room(roomNum, typeRoom, pricePerNight, cancellationFee, AVAILABLE);
                     roomManagement.addRoom(room);
                 } else if (commandNum == 2) {
-                    getRooms().stream().forEach(e -> System.out.print(e));
+                    getRooms().stream().forEach(e -> System.out.println(e));
                     System.out.println("Which room do you remove?");
                     int roomNum = Integer.parseInt(scanner.nextLine());
                     roomManagement.removeRoom(getRooms().get(roomNum - 1));
@@ -119,6 +113,7 @@ public class Main {
             } else {
                 System.out.println("You aren't administrator");
             }
+
         } else {
             System.out.println("You don't login in your account");
         }
@@ -133,17 +128,20 @@ public class Main {
                 printMainMenu();
                 return;
             }
+
             if (ReservationManager.getReservations().size() != 0) {
                 System.out.println("This is our reservations");
                 for (int i = 0; i < User.getBookingHistory().size(); i++) {
                     //TODO: There is a problem when I want to visualize reservation room
                     System.out.printf("%d. reservation\n", i + 1);
                 }
+
                 System.out.println("Which reservation do you want to cancel?");
                 int roomNum = Integer.parseInt(scanner.nextLine());
                 if (command.equals("Yes")) {
                     reservationManager.cancelReservation(ReservationManager.getReservations().get(roomNum - 1));
                 }
+
             } else {
                 System.out.println("You don't have some reservation");
             }
@@ -155,7 +153,7 @@ public class Main {
     }
 
 
-    private static void reservation(Scanner scanner, ReservationManager reservationManager, int loginIndex) {
+    private static void reservation(Scanner scanner, ReservationManager reservationManager, int loginIndex) throws Exception {
         if (loginIndex != -1) {
             System.out.println("Do you make a reservation: Yes/No");
             String command = scanner.nextLine();
@@ -163,11 +161,18 @@ public class Main {
                 printMainMenu();
                 return;
             }
+
             //TODO: Problem with dates, because we don't check if the room is available or booked on this dates
             System.out.println("Enter a checkInDate in format YYYY-MM-DD");
             String checkInDate = scanner.nextLine();
             System.out.println("Enter a checkOutDate in format YYYY-MM-DD");
             String checkOutDate = scanner.nextLine();
+            boolean cr = ReservationRepository.reservationValidation(checkInDate, checkOutDate);
+            //Validation
+            if (!cr) {
+                throw new Exception("Invalid format");
+            }
+
             if (reservationManager.getAvailableRooms().size() != 0) {
                 System.out.println("Available room/s");
                 for (int i = 0; i < reservationManager.getAvailableRooms().size(); i++) {
@@ -181,9 +186,10 @@ public class Main {
                     User user = UserManager.getUsers().get(loginIndex);
                     Room room = reservationManager.getAvailableRooms().get(roomNum - 1);
                     reservationManager.makeReservation(user, room, checkInDate, checkOutDate);
-                    //RoomManagement.getRooms().get(roomNum-1).setStatus(BOOKED);
                     reservationManager.getAvailableRooms().get(roomNum - 1).setStatus(BOOKED);
                     ReservationRepository.writeToFile();
+                    //getRooms().forEach(e-> System.out.println(e));
+                    RoomRepository.writeToFile();
                 }
 
             } else {
@@ -205,6 +211,7 @@ public class Main {
         if (!cr) {
             throw new Exception("Invalid format");
         }
+
         User user = userManager.login(username, password);
         if (user == null) {
             System.out.println("You don't have profile and you have to make registration");
@@ -216,6 +223,7 @@ public class Main {
             if (UserManager.getUsers().get(i).getUsername().equals(username) && UserManager.getUsers().get(i).getPassword().equals(password)) {
                 return i;
             }
+
         }
 
         return -1;
@@ -233,6 +241,7 @@ public class Main {
         if (!cr) {
             throw new Exception("Invalid format");
         }
+
         Role role = null;
         if (roleString.equals("ADMINISTRATOR")) {
             role = Role.ADMINISTRATOR;
@@ -240,9 +249,10 @@ public class Main {
         } else if (roleString.equals("ORDINARY_USER")) {
             role = Role.ORDINARY_USER;
             System.out.println(userManager.registerUser(username, password, role));
-        }else {
+        } else {
             throw new Exception("Invalid format");
         }
+
     }
 
 

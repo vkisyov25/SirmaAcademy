@@ -15,8 +15,6 @@ public class Room {
         this.cancellationFee = cancellationFee;
         this.status = status;
     }
-
-    //TODO: Are all "set methods" required?
     public int getRoomNum() {
         return roomNum;
     }

@@ -30,6 +30,7 @@ public class UserManager implements Serializable {
                     users.add(newUser);
                     break;
                 }
+
             }
 
         }
@@ -45,7 +46,9 @@ public class UserManager implements Serializable {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return user;
             }
+
         }
+
         return null;
     }
 

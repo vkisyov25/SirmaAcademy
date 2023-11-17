@@ -11,8 +11,6 @@ public class User implements Serializable {
     private String password;
     private static List<Reservation> bookingHistory;
     private Role roles;
-
-    //TODO: Validation for password.
     public User(String username, String password, Role roles) {
 
 
@@ -53,7 +51,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        //return username+","+password+","+bookingHistory +","+roles;
         return username + "," + password + "," + roles;
     }
 }

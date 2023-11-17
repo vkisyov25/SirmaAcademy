@@ -24,10 +24,11 @@ public class UserRepository {
                 if (!cr) {
                     throw new Exception("Invalid format");
                 }
-                Role roles = getUsers().get(i).getRoles();
 
+                Role roles = getUsers().get(i).getRoles();
                 myWriter.write(username + "," + password + "," + roles + "," + "\n");
             }
+
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
@@ -36,6 +37,7 @@ public class UserRepository {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
 
     public static List<User> readCSV() throws Exception {
@@ -47,6 +49,7 @@ public class UserRepository {
                 for (int i = 0; i < values.length; i++) {
                     records.add(values[i]);
                 }
+
             }
 
         } catch (IOException e) {
@@ -62,6 +65,7 @@ public class UserRepository {
             if (!cr) {
                 throw new Exception("Invalid format");
             }
+
             User user = null;
             if (role.equals("ADMINISTRATOR")) {
                 user = new User(username, password, Role.ADMINISTRATOR);
@@ -70,8 +74,10 @@ public class UserRepository {
             } else {
                 throw new Exception("Invalid format");
             }
+
             userList.add(user);
         }
+
         return userList;
     }
 

@@ -19,11 +19,13 @@ public class RoomRepository {
                 for (int i = 0; i < values.length; i++) {
                     records.add(values[i]);
                 }
+
             }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         List<Room> roomList = new ArrayList<>();
         for (int i = 0; i < records.size(); i += 5) {
             Room room1 = null;
@@ -48,13 +50,14 @@ public class RoomRepository {
                 } else {
                     throw new Exception("Invalid format");
                 }
+
             } else {
                 throw new Exception("Invalid format");
             }
 
             roomList.add(room1);
-            return roomList;
         }
+
         return roomList;
     }
 
@@ -65,11 +68,12 @@ public class RoomRepository {
             for (int i = 0; i < RoomManagement.getRooms().size(); i++) {
                 int roomNum = RoomManagement.getRooms().get(i).getRoomNum();
                 TypeRoom typeRoom = RoomManagement.getRooms().get(i).getTypeRoom();
-                double pricePerNightht = RoomManagement.getRooms().get(i).getPricePerNight();
+                double pricePerNight = RoomManagement.getRooms().get(i).getPricePerNight();
                 double cancelationFee = RoomManagement.getRooms().get(i).getCancellationFee();
                 Status status = RoomManagement.getRooms().get(i).getStatus();
-                myWriter.write(roomNum + "," + typeRoom + "," + pricePerNightht + "," + cancelationFee + "," + status + "," + "\n");
+                myWriter.write(roomNum + "," + typeRoom + "," + pricePerNight + "," + cancelationFee + "," + status + "," + "\n");
             }
+
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
@@ -78,6 +82,7 @@ public class RoomRepository {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
     }
 
 }
