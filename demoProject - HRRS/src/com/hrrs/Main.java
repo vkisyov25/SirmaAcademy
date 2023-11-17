@@ -5,6 +5,7 @@ import com.hrrs.Model.Room.Room;
 import com.hrrs.Model.Room.TypeRoom;
 import com.hrrs.Model.User.Role;
 import com.hrrs.Model.User.User;
+import com.hrrs.Repository.RoomRepository;
 import com.hrrs.Repository.UserRepository;
 import com.hrrs.Service.ReservationManager;
 import com.hrrs.Service.RoomManagement;
@@ -69,7 +70,7 @@ public class Main {
         return loginIndex;
     }
 
-    private static void adminMenu(Scanner scanner, RoomManagement roomManagement, int loginIndex) {
+    private static void adminMenu(Scanner scanner, RoomManagement roomManagement, int loginIndex) throws Exception {
         if (loginIndex != -1) {
             if (UserManager.getUsers().get(loginIndex).getRoles() == Role.ADMINISTRATOR) {
                 printAdministratorMenu();
@@ -84,11 +85,19 @@ public class Main {
                         typeRoom = SINGLE;
                     } else if (typeRoomString.equals("DOUBLE")) {
                         typeRoom = DOUBLE;
+                    }else {
+                        throw new Exception("Invalid format");
                     }
                     System.out.println("pricePerNight = ");
                     double pricePerNight = Double.parseDouble(scanner.nextLine());
                     System.out.println("cancellationFee = ");
                     double cancellationFee = Double.parseDouble(scanner.nextLine());
+                    boolean cr = RoomRepository.roomValidation(String.valueOf(roomNum),String.valueOf(pricePerNight), String.valueOf(cancellationFee));
+                    //Validation
+                    if (!cr) {
+                        throw new Exception("Invalid format");
+                    }
+
                     Room room = new Room(roomNum, typeRoom, pricePerNight, cancellationFee, AVAILABLE);
                     roomManagement.addRoom(room);
                 } else if (commandNum == 2) {

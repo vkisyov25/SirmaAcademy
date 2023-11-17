@@ -34,7 +34,10 @@ public class RoomRepository {
                 } else if (records.get(i + 4).equals("BOOKED")) {
                     room1 = new Room(Integer.parseInt(records.get(i)), TypeRoom.SINGLE, Double.parseDouble(records.get(i + 2)),
                             Double.parseDouble(records.get(i + 3)), Status.BOOKED);
+                } else {
+                    throw new Exception("Invalid format");
                 }
+
             } else if (records.get(i + 1).equals("DOUBLE")) {
                 if (records.get(i + 4).equals("AVAILABLE")) {
                     room1 = new Room(Integer.parseInt(records.get(i)), TypeRoom.DOUBLE, Double.parseDouble(records.get(i + 2)),
@@ -42,13 +45,13 @@ public class RoomRepository {
                 } else if (records.get(i + 4).equals("BOOKED")) {
                     room1 = new Room(Integer.parseInt(records.get(i)), TypeRoom.DOUBLE, Double.parseDouble(records.get(i + 2)),
                             Double.parseDouble(records.get(i + 3)), Status.BOOKED);
+                } else {
+                    throw new Exception("Invalid format");
                 }
-            }
-            /*boolean cr = StaffManagementApp.validateEmployee(String.valueOf(ID), name, department, role, String.valueOf(salary));
-            //Validation
-            if (!cr) {
+            } else {
                 throw new Exception("Invalid format");
-            }*/
+            }
+
             roomList.add(room1);
             return roomList;
         }
@@ -72,6 +75,9 @@ public class RoomRepository {
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
+
 }
