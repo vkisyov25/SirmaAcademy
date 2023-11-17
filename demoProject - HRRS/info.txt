@@ -17,6 +17,7 @@ The main menu is :
 4. Reservation cancelled
 5. Admin menu - add room, remove room, update pricePerNight and cancellationFee
 6. Exit
+7. View your reservation
 
 You first have to make registartion and login in your account.
 After that you can make reservation or cancel reservation.
