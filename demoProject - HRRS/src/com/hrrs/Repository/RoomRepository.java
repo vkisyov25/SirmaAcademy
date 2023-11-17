@@ -1,12 +1,9 @@
 package com.hrrs.Repository;
 
-import com.hrrs.Controller.RoomManagement;
-import com.hrrs.Model.Reservation.Reservation;
+import com.hrrs.Service.RoomManagement;
 import com.hrrs.Model.Room.Room;
 import com.hrrs.Model.Room.Status;
 import com.hrrs.Model.Room.TypeRoom;
-import com.hrrs.Model.User.Role;
-import com.hrrs.Model.User.User;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -58,7 +58,7 @@ public class Room {
                 ", status=" + status;
     }*/
     public String toString() {
-        return  + roomNum + "," + typeRoom + "," + pricePerNight + "," + cancellationFee + "," + status;
+        return +roomNum + "," + typeRoom + "," + pricePerNight + "," + cancellationFee + "," + status;
 
     }
 }

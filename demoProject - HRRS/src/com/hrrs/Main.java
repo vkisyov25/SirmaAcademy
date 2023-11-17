@@ -5,9 +5,10 @@ import com.hrrs.Model.Room.Room;
 import com.hrrs.Model.Room.TypeRoom;
 import com.hrrs.Model.User.Role;
 import com.hrrs.Model.User.User;
-import com.hrrs.Controller.ReservationManager;
-import com.hrrs.Controller.RoomManagement;
-import com.hrrs.Controller.UserManager;
+import com.hrrs.Repository.UserRepository;
+import com.hrrs.Service.ReservationManager;
+import com.hrrs.Service.RoomManagement;
+import com.hrrs.Service.UserManager;
 import com.hrrs.Repository.ReservationRepository;
 
 import java.io.*;
@@ -19,7 +20,7 @@ import static com.hrrs.Model.Room.Status.AVAILABLE;
 import static com.hrrs.Model.Room.Status.BOOKED;
 import static com.hrrs.Model.Room.TypeRoom.DOUBLE;
 import static com.hrrs.Model.Room.TypeRoom.SINGLE;
-import static com.hrrs.Controller.RoomManagement.getRooms;
+import static com.hrrs.Service.RoomManagement.getRooms;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -119,6 +120,10 @@ public class Main {
             List<Reservation> reservationList = new ArrayList<>();
             System.out.println("Do you cancel a reservation: Yes/No");
             String command = scanner.nextLine();
+            if (command.equals("No")) {
+                printMainMenu();
+                return;
+            }
             if (ReservationManager.getReservations().size() != 0) {
                 System.out.println("This is our reservations");
                 for (int i = 0; i < User.getBookingHistory().size(); i++) {
@@ -186,6 +191,11 @@ public class Main {
         String username = scanner.nextLine();
         System.out.println("password: ");
         String password = scanner.nextLine();
+        boolean cr = UserRepository.userValidation(username, password);
+        //Validation
+        if (!cr) {
+            throw new Exception("Invalid format");
+        }
         User user = userManager.login(username, password);
         if (user == null) {
             System.out.println("You don't have profile and you have to make registration");
@@ -209,6 +219,11 @@ public class Main {
         String password = scanner.nextLine();
         System.out.println("role:{ADMINISTRATOR,ORDINARY_USER}");
         String roleString = scanner.nextLine();
+        boolean cr = UserRepository.userValidation(username, password);
+        //Validation
+        if (!cr) {
+            throw new Exception("Invalid format");
+        }
         Role role = null;
         if (roleString.equals("ADMINISTRATOR")) {
             role = Role.ADMINISTRATOR;
@@ -216,6 +231,8 @@ public class Main {
         } else if (roleString.equals("ORDINARY_USER")) {
             role = Role.ORDINARY_USER;
             System.out.println(userManager.registerUser(username, password, role));
+        }else {
+            throw new Exception("Invalid format");
         }
     }
 

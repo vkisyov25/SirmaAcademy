@@ -1,4 +1,4 @@
-package com.hrrs.Controller;
+package com.hrrs.Service;
 
 import com.hrrs.Model.Room.Room;
 import com.hrrs.Repository.RoomRepository;

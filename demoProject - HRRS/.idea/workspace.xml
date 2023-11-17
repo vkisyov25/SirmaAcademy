@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d457f628-f181-42f5-b86b-b35ab7d01c5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hrrs/Controller/ReservationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hrrs/Controller/ReservationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hrrs/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hrrs/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hrrs/Model/Room/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hrrs/Model/Room/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/hrrs/Model/User/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/hrrs/Model/User/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/users.csv" afterDir="false" />
-    </list>
+    <list default="true" id="d457f628-f181-42f5-b86b-b35ab7d01c5d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +40,7 @@
       <workItem from="1700075699662" duration="11000" />
       <workItem from="1700113442349" duration="692000" />
       <workItem from="1700114224410" duration="49000" />
+      <workItem from="1700153571690" duration="73000" />
     </task>
     <servers />
   </component>

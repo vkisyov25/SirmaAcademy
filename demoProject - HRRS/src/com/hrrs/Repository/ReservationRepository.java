@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.hrrs.Controller.ReservationManager.getReservations;
+import static com.hrrs.Service.ReservationManager.getReservations;
 
 public class ReservationRepository {
     public static List<Reservation> readCSV() throws Exception {
@@ -67,6 +67,7 @@ public class ReservationRepository {
         }
         return userList;
     }
+
     public static void writeToFile() {
         try {
             File file = new File("D:\\JavaPrograms\\SirmaAcademy-exercises\\demoProject - HRRS\\src\\reservations.csv");

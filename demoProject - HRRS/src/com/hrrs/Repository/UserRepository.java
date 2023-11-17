@@ -6,8 +6,10 @@ import com.hrrs.Model.User.User;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import static com.hrrs.Controller.UserManager.getUsers;
+import static com.hrrs.Service.UserManager.getUsers;
 
 public class UserRepository {
     public static void writeToFile() {
@@ -17,14 +19,22 @@ public class UserRepository {
             for (int i = 0; i < getUsers().size(); i++) {
                 String username = getUsers().get(i).getUsername();
                 String password = getUsers().get(i).getPassword();
+                boolean cr = UserRepository.userValidation(username, password);
+                //Validation
+                if (!cr) {
+                    throw new Exception("Invalid format");
+                }
                 Role roles = getUsers().get(i).getRoles();
-                myWriter.write(username + "," + password + "," + roles + ","+"\n");
+
+                myWriter.write(username + "," + password + "," + roles + "," + "\n");
             }
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -47,19 +57,37 @@ public class UserRepository {
             String username = records.get(i);
             String password = records.get(i + 1);
             String role = records.get(i + 2);
-            /*boolean cr = StaffManagementApp.validateEmployee(String.valueOf(ID), name, department, role, String.valueOf(salary));
+            boolean cr = userValidation(username, password);
             //Validation
             if (!cr) {
                 throw new Exception("Invalid format");
-            }*/
+            }
             User user = null;
-            if(role.equals("ADMINISTRATOR")){
-                user = new User(username, password,Role.ADMINISTRATOR );
+            if (role.equals("ADMINISTRATOR")) {
+                user = new User(username, password, Role.ADMINISTRATOR);
             } else if (role.equals("ORDINARY_USER")) {
-                user = new User(username, password,Role.ORDINARY_USER );
+                user = new User(username, password, Role.ORDINARY_USER);
+            } else {
+                throw new Exception("Invalid format");
             }
             userList.add(user);
         }
         return userList;
+    }
+
+    public static boolean userValidation(String username, String password) {
+        Pattern patternUsername = Pattern.compile("[a-zA-z]+");
+        Matcher matcherUsername = patternUsername.matcher(username);
+        if (!matcherUsername.matches()) {
+            return false;
+        }
+
+        Pattern patternPassword = Pattern.compile("[a-zA-Z\\d]+");
+        Matcher matcherPassword = patternPassword.matcher(password);
+        if (!matcherPassword.matches()) {
+            return false;
+        }
+
+        return true;
     }
 }
