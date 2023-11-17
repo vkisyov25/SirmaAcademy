@@ -33,7 +33,7 @@ public class Main {
         ReservationManager reservationManager = new ReservationManager();
         //getRooms().forEach(e-> System.out.println(e));
         int loginIndex = -1;
-        while (num <= 6) {
+        while (num <= 7) {
             if (num == 1) {
                 registration(scanner, userManager);
             } else if (num == 2) {
@@ -46,12 +46,33 @@ public class Main {
                 adminMenu(scanner, roomManagement, loginIndex);
             } else if (num == 6) {
                 loginIndex = exit(loginIndex);
+            } else if (num==7) {
+                viewYourReservation(loginIndex);
             }
 
             System.out.println("Please select a number for the menu option: ");
             num = Integer.parseInt(scanner.nextLine());
         }
 
+    }
+
+    private static void viewYourReservation(int loginIndex) throws Exception {
+        if(loginIndex !=-1){
+            for (int i = 0; i < ReservationRepository.readCSV().size(); i++) {
+                if(ReservationRepository.readCSV().get(i).getUser().getUsername().equals(UserManager.getUsers().get(loginIndex).getUsername())){
+                    System.out.print(ReservationRepository.readCSV().get(i).getUser().getUsername()+","+ReservationRepository.readCSV().get(i).getUser().getRoles()+",");
+                    System.out.print(ReservationRepository.readCSV().get(i).getRoom()+",");
+                    System.out.print(ReservationRepository.readCSV().get(i).getCheckOutDate()+",");
+                    System.out.print(ReservationRepository.readCSV().get(i).getCheckOutDate()+",");
+                }else {
+                    System.out.println("You don't have a reservations.");
+                }
+
+            }
+
+        }else {
+            System.out.println("You don't login");
+        }
     }
 
     private static int exit(int loginIndex) throws IOException {
@@ -257,7 +278,8 @@ public class Main {
 
 
     public static void printMainMenu() {
-        System.out.print("\nWelcome to the Hotel Reservation Application\n" + "--------------------------------------------\n" + "1. Registration\n" + "2. Login\n" + "3. Reservation\n" + "4. Reservation cancelled\n" + "5. Admin menu - add room, remove room, update pricePerNight and cancellationFee\n" + "6. Exit\n" + "--------------------------------------------\n" + "Please select a number for the menu option:\n");
+        System.out.print("\nWelcome to the Hotel Reservation Application\n" + "--------------------------------------------\n" + "1. Registration\n" + "2. Login\n" + "3. Reservation\n" + "4. Reservation cancelled\n" + "5. Admin menu - add room, remove room, update pricePerNight and cancellationFee\n" + "6. Exit\n" +
+                "7. View your reservation\n" + "--------------------------------------------\n" + "Please select a number for the menu option:\n");
     }
 
     public static void printAdministratorMenu() {
