@@ -1,0 +1,23 @@
+
+
+                                                                               HotelRoomReservationSystem
+
+
+HotelRoomReservationSystem - A Java project for hotel reservation management.
+This is a java application for booking hotel rooms which I developed for the Sirma Academy's Java Programming Course.
+The goal was to create a hotel application which allows users to book and manage room reservations.
+The project emphasizes the use of Java programming language for practicing and elevating fundamental skills as a Java developer.
+
+You may run the project by executing the HotelApplication class on your favorite Java IDEA.
+
+The main menu is :
+1. Registration
+2. Login
+3. Reservation
+4. Reservation cancelled
+5. Admin menu - add room, remove room, update pricePerNight and cancellationFee
+6. Exit
+
+You first have to make registartion and login in your account.
+After that you can make reservation or cancel reservation.
+If you make your status like ADMINISTRATOR when you make your registration you can add, remove and update room. 
