@@ -1,8 +1,11 @@
 package com.academy.sirma.restdbapp.Repository;
 
 import com.academy.sirma.restdbapp.Model.User;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class UserRepository {
@@ -17,8 +20,8 @@ public class UserRepository {
         jdbcTemplate.update(sql, user.getUsername(),user.getPassword(),user.getEmail());
     }
 
-   /* public User getUserById(int id) {
+    public List<User> getUserById(int id) {
         String sql = "SELECT * FROM user WHERE id = ? ";
-        return jdbcTemplate.query(sql, new User);
-    }*/
+        return jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
+    }
 }
