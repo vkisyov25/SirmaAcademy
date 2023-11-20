@@ -20,6 +20,7 @@ public class UserRepository {
         jdbcTemplate.update(sql, user.getUsername(),user.getPassword(),user.getEmail());
     }
 
+
     public List<User> getUserById(int id) {
         String sql = "SELECT * FROM user WHERE id = ? ";
         return jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
