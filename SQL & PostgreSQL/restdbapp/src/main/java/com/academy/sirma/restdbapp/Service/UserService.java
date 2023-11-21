@@ -10,6 +10,10 @@ import java.util.List;
 public class UserService {
     UserRepository userRepository;
 
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public void register(User user){
         userRepository.register(user);
     }

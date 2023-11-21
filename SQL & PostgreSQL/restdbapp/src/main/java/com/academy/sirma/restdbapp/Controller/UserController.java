@@ -11,9 +11,17 @@ import java.util.List;
 public class UserController {
     UserService userService;
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping("/addUser")
     public void addUser(@RequestBody User user){
-        userService.register(user);
+        try {
+            userService.register(user);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     @GetMapping("/userById/{id}")
