@@ -18,7 +18,7 @@ public class UserService {
         userRepository.register(user);
     }
 
-    public List<User> getUserById(int id){
-        return  userRepository.getUserById(id);
+    public User getUserById(int id){
+        return (User) userRepository.getUserById(id);
     }
 }

@@ -21,8 +21,8 @@ public class UserRepository {
     }
 
 
-    public List<User> getUserById(int id) {
-        String sql = "SELECT * FROM user WHERE id = ? ";
-        return jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
+    public User getUserById(int id) {
+        String sql = "SELECT * FROM users WHERE id = ? ";
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<>(User.class));
     }
 }
