@@ -12,6 +12,9 @@ public class Article {
         this.content = content;
         this.userId = userId;
     }
+    public Article() {
+        
+    }
 
     public int getId() {
         return id;
@@ -43,5 +46,14 @@ public class Article {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", userId=" + userId +
+                "}\n";
     }
 }
