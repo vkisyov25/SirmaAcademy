@@ -4,9 +4,9 @@ public class Article {
     private int id;
     private String title;
     private String content;
-    private String userId;
+    private int userId;
 
-    public Article(int id, String title, String content, String userId) {
+    public Article(int id, String title, String content, int userId) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -37,11 +37,11 @@ public class Article {
         this.content = content;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }
