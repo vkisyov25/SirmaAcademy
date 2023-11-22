@@ -1,5 +1,7 @@
 package com.academy.sirma.restdbapp.Controller;
 
+import com.academy.sirma.restdbapp.DTO.UserDTO;
+import com.academy.sirma.restdbapp.DTO.UserMapper;
 import com.academy.sirma.restdbapp.Model.User;
 import com.academy.sirma.restdbapp.Service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +27,10 @@ public class UserController {
     }
 
     @GetMapping("/userById/{id}")
-    public User getUserById(@PathVariable int id){
-        return userService.getUserById(id);
+    public UserDTO getUserById(@PathVariable int id){
+
+        //return userService.getUserById(id);
+        return UserMapper.toUserDto(userService.getUserById(id));
     }
 
 }

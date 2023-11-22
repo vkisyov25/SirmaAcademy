@@ -13,7 +13,6 @@ public class Article {
         this.userId = userId;
     }
     public Article() {
-        
     }
 
     public int getId() {
