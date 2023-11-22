@@ -13,7 +13,7 @@
   <fieldset>
     <legend>Customer Details</legend>
     <label >First name:</label>
-    <input type="text" placeholder="Ventsislav" ><br><br>
+    <input type="text" placeholder="Ventsislav" autofocus><br><br>
     <label >Last name:</label>
     <input type="text" placeholder="Kisyov"><br><br>
 
@@ -24,34 +24,37 @@
     <label>Other</label>
     <input type="radio">
     <br><br>
-    <label>Preferred contact method:</label>
-    <label>Email</label>
-    <input type="radio">
-    <label>Phone</label>
-    <input type="radio">
+    <div><label>Preferred contact method:</label>
+      <label>Email</label>
+      <input type="radio">
+      <label>Phone</label>
+      <input type="radio"></div>
+
     <br><br>
     <label >Email</label>
-    <input type="text" placeholder="your@email.com">
+    <input type="email" placeholder="your@email.com" >
     <br><br>
-    <label >Email</label>
-    <input type="text" placeholder="your@email.com">
+    <label >Phone</label>
+    <input type="text" placeholder="+359885488556">
     <br><br>
     Town
     <select name="towns" id="towns">
-      <option value="Sofia">Sofia</option>
-      <option value="Plovdiv">Plovdiv</option>
-      <option value="Varna">Varna</option>
+      <datalist>
+        <option value="Sofia">Sofia</option>
+        <option value="Plovdiv">Plovdiv</option>
+        <option value="Varna">Varna</option>
+      </datalist>
     </select>
     <br><br>
-    Age <input type="text"size="2">
+    Age <input type="number" min="18" max="70">
     <br><br>
     Programing language <input type="text">
     <br><br>
     <textarea name="" id="" cols="30" rows="10"></textarea>
     <br><br>
-    <input type="checkbox">I agree the Terms and Conditions
+    <input type="checkbox" required>I agree the Terms and Conditions
     <br><br>
-    <input type="button" value="Send">
+    <input type="submit" value="Send">
   </fieldset>
 </form>
 
