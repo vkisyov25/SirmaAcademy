@@ -4,6 +4,7 @@ import com.academy.sirma.restdbapp.DTO.UserDTO;
 import com.academy.sirma.restdbapp.DTO.UserMapper;
 import com.academy.sirma.restdbapp.Model.User;
 import com.academy.sirma.restdbapp.Service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
