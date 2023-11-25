@@ -2,6 +2,9 @@ package com.sirma.academy.webProject.Controller;
 
 import com.sirma.academy.webProject.Model.Reservation;
 import com.sirma.academy.webProject.Service.ReservationService;
+import com.sirma.academy.webProject.Validation.ReservationValidation;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +20,14 @@ public class ReservationController {
     }
 
     @PostMapping("/make")
-    public void makeReservation(@RequestBody Reservation reservation) {
-        reservationService.saveReservaton(reservation);
+    public ResponseEntity<String> makeReservation(@RequestBody Reservation reservation) {
+        if(ReservationValidation.reservationValidation(reservation)){
+            reservationService.saveReservaton(reservation);
+        }else {
+            return new ResponseEntity<>("Invalid data format", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>("Successfully reservation", HttpStatus.OK);
     }
 
     @GetMapping("/allReservationByID/{id}")
