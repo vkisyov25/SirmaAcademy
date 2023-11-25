@@ -5,6 +5,7 @@ import com.sirma.academy.webProject.Service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/reservation")
@@ -16,12 +17,12 @@ public class ReservationController {
     }
 
     @PostMapping("/make")
-    public void makeReservation(@RequestBody Reservation reservation){
+    public void makeReservation(@RequestBody Reservation reservation) {
         reservationService.saveReservaton(reservation);
     }
 
     @GetMapping("/allReservationByID/{id}")
-    public List<Reservation> allReservationByID(@PathVariable long id){
-        return reservationService.getAllReservationByUser_id(id);
+    public List<Reservation> allReservationByID(@PathVariable long id) {
+        return ReservationService.getAllReservationByUser_id(id);
     }
 }

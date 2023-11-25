@@ -7,14 +7,10 @@ import java.util.List;
 
 public class UserDTO {
 
-    private ReservationService reservationService;
-
-
     private long ID;
     private String name;
 
     private List<Reservation> reservationList;
-
 
     public long getID() {
         return ID;
@@ -36,7 +32,7 @@ public class UserDTO {
         return reservationList;
     }
 
-    public void setReservationList() {
-        this.reservationList = (List<Reservation>) reservationService.reservationByUser_id(getID());
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
     }
 }

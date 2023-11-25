@@ -6,7 +6,10 @@ import org.antlr.v4.runtime.misc.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "user_account")
+@Table(name = "user_account", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "name")
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,3 +77,6 @@ public class User {
         this.reservations = reservations;
     }
 }
+
+
+
