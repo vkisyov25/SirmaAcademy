@@ -1,7 +1,6 @@
 import java.io.Serializable;
 
 public class Reflection implements Serializable {
-
     private static final String nickName = "Pinguin";
     public String name;
     protected String webAddress;
@@ -29,22 +28,24 @@ public class Reflection implements Serializable {
         this.setZip(2300);
     }
 
+    @Author(name = "Mimi")
     public final String getName() {
         return name;
     }
 
+    @Author(name = "Ventsy")
     private void setName(String name) {
         this.name = name;
     }
-
     protected String getWebAddress() {
         return webAddress;
     }
 
+    @Author(name = "Didi")
     private void setWebAddress(String webAddress) {
         this.webAddress = webAddress;
     }
-
+    @Author(name = "Vili")
     public String getEmail() {
         return email;
     }
