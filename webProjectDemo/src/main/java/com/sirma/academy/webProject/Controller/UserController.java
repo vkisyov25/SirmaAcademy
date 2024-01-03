@@ -11,20 +11,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.beans.ConstructorProperties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    UserService userService;
-
     @Autowired
+    private UserService userService;
+
+   /* @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-    }
+    }*/
 
     @PostMapping("/registration")
     public ResponseEntity<String> register(@RequestBody User user) {
