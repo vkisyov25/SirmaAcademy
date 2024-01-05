@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>User Details</h2>
+    <div th:if="${userById != null}">
+        <p>User ID: <span th:text="${userById.id}"></span></p>
+        <p>Username: <span th:text="${userById.username}"></span></p>
+        <!--<p>Password: <span th:text="${userById.password}"></span></p>-->
+    </div>
+    <div th:if="${userById == null}">
+        <p>User not found!</p>
+    </div>
+</body>
+</html>
